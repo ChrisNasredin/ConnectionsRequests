@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+
+    <link type="text/css" rel="stylesheet" href="{% static 'cr/css/materialize.min.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'cr/css/custom.css' %}" media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+<nav id="up-nav">
+    <div class="container">
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                <!--                <li><a href="{% url 'add_reuqest' %}">Новая Заявка</a></li>-->
+                <li><a class="modal-trigger" href="#modal1">Новая Заявка</a></li>
+                <li><a href="#">Вход</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav id="down-nav">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img src="{% static 'cr/img/logo.png' %}" alt="logo"></a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h2>Все Заявки</h2>
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in db %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.state }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <div class="container">
+            <h4>Новая Заявка</h4>
+            <form action="add/">
+                {{ form.as_p }}
+                <button class="btn waves-effect waves-blue" type="submit">оформить</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Отмена</a>
+    </div>
+</div>
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="{% static 'cr/js/materialize.min.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+            var Modalelem = document.querySelector('.modal');
+            var instance = M.Modal.init(Modalelem);
+        });
+
+
+</script>
+</body>
+</html>

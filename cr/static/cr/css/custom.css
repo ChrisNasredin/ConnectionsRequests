@@ -1,0 +1,12 @@
+#up-nav {
+    background-color: #0065b3
+}
+#down-nav {
+    background-color: #ffffff
+}
+
+img {
+    vertical-align: middle;
+		position: relative;
+    top:-4px;
+}
